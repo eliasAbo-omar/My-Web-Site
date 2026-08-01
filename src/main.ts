@@ -26,8 +26,8 @@ if (!headContainer || !menu || list.length === 0) {
 
     li.appendChild(a);
     fargment.appendChild(li);
-    menu.appendChild(fargment);
   });
+  menu.appendChild(fargment);
 }
 
 const myAllLinks = document.querySelectorAll(
@@ -50,6 +50,12 @@ const projectContainer = document.querySelector(
   ".container-projects",
 ) as HTMLDivElement;
 
+interface Project {
+  name: s;
+  description: s;
+  html_url: s;
+}
+
 class myProject {
   name: s;
   description: s;
@@ -67,7 +73,8 @@ async function fetchProjects(): Promise<myProject[]> {
     const res = await fetch("https://api.github.com/users/eliasAbo-omar/repos");
     const data = await res.json();
     return data.map(
-      (repo: any) => new myProject(repo.name, repo.description, repo.html_url),
+      (repo: Project) =>
+        new myProject(repo.name, repo.description, repo.html_url),
     );
   } catch (error) {
     console.error("Failed to fetch projects: " + error);

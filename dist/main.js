@@ -26,8 +26,8 @@ else {
         }
         li.appendChild(a);
         fargment.appendChild(li);
-        menu.appendChild(fargment);
     });
+    menu.appendChild(fargment);
 }
 const myAllLinks = document.querySelectorAll(".menu a");
 myAllLinks.forEach((link) => {
