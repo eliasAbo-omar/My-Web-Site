@@ -3,20 +3,28 @@ type n = number;
 
 // ========== Header's Menu & class Active ===========
 const headContainer = document.querySelector(".head-container") as HTMLElement;
-const menu = document.querySelectorAll(".menu") as NodeListOf<HTMLElement>;
+const menu = document.querySelector(".menu") as HTMLElement;
+const singUp = document.querySelector(".singUp") as HTMLElement;
+const fargment = document.createDocumentFragment() as DocumentFragment;
 
-const list: s[] = ["Home", "About", "Contact", "Blog", "Services"];
+const list: s[] = [
+  "Home",
+  "About Us",
+  "Our Services",
+  "Portfolio",
+  "Contact Us",
+];
 
-const firstMenu = menu[0] as HTMLElement;
+console.log(singUp);
 
-if (!headContainer || !firstMenu || list.length === 0) {
+if (!headContainer || !menu || list.length === 0) {
   throw new Error("Element Not Found");
 } else {
   list.forEach((item: s, index: n) => {
     const li = document.createElement("li") as HTMLLIElement;
     const a = document.createElement("a") as HTMLAnchorElement;
 
-    a.href = `#${item}`;
+    a.href = `#${item.toLowerCase()}`;
     a.textContent = item;
 
     if (index === 0) {
@@ -24,9 +32,8 @@ if (!headContainer || !firstMenu || list.length === 0) {
     }
 
     li.appendChild(a);
-    firstMenu.appendChild(li);
-
-    headContainer.appendChild(firstMenu);
+    fargment.appendChild(li);
+    menu.appendChild(fargment);
   });
 }
 
