@@ -5,7 +5,7 @@
 }
 
 :root {
-  --main-color: #2dab71;
+  --main-color: #02844d;
   --second-color: #fefdfb;
   --background-color: #000303;
 }
@@ -78,6 +78,12 @@ body {
 
       li a:hover {
         color: var(--main-color);
+      }
+      li a.active {
+        color: var(--main-color);
+      }
+      li a.active::after {
+        width: 100%;
       }
     }
   }
