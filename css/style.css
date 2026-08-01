@@ -8,6 +8,7 @@
   --main-color: #02844d;
   --second-color: #fefdfb;
   --background-color: #000303;
+  --p-color-in-light: #000303;
 }
 
 h1,
@@ -36,9 +37,22 @@ ol {
 }
 
 body {
-  background-color: var(--background-color);
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+}
+
+.dark {
+  background-color: var(--background-color);
+  color: var(--second-color);
+}
+
+.light {
+  background-color: var(--second-color);
+  color: var(--main-color);
+}
+
+.padding {
+  padding: 50px 0;
 }
 
 /* Header */
@@ -148,27 +162,190 @@ body {
 /* Home */
 
 .home {
-  height: calc(100vh - 75px);
-  margin-top: 75px;
   .content-card {
-    border: 2px solid var(--main-color);
-    border-radius: 5px;
+    height: calc(100vh - 95px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 30px;
-    /* margin: 0 auto; */
-    /* width: 50%; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    h1 {
-      color: var(--main-color);
+    margin: 45px 0 0;
+    width: 100%;
+
+    .welcome {
+      width: 50%;
+      padding: 0 20px;
+      margin: 0;
       text-align: center;
-      margin: 10px 0;
+
+      h1 {
+        color: var(--main-color);
+        text-align: center;
+        margin: 10px 0;
+        font-weight: 400;
+        margin-bottom: 20px;
+
+        span {
+          font-weight: 700;
+        }
+      }
+      p {
+        color: var(--second-color);
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      a {
+        transition: all 0.3s ease-in-out;
+      }
+
+      a:hover {
+        transform: scale(1.1) translateY(-5px);
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+
+    .home-img {
+      width: 40%;
+      height: 100%;
+      position: relative;
+      animation: moveUp 1s ease-in-out infinite alternate;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Projects Section */
+
+.projects {
+  .head-section {
+    padding: 0 0 30px;
+    h2 {
+      color: var(--main-color);
+      margin: 0 0 10px;
+      font-weight: 700;
+      font-size: 28px;
     }
     p {
-      color: var(--second-color);
+      color: var(--p-color-in-light);
       text-align: center;
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+  }
+
+  .container-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+
+    .project-card {
+      width: 300px;
+      height: 375px;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      border: 2px solid var(--main-color);
+      padding: 10px;
+
+      h3 {
+        color: var(--main-color);
+        margin: 10px 0;
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .project-img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05) translateY(-5px);
+          box-shadow: 0px 0px 20px 0px #02844d;
+        }
+      }
+
+      p {
+        color: var(--p-color-in-light);
+        text-align: center;
+        margin: 10px 0;
+        font-weight: 400;
+      }
+
+      &:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0px 0px 20px 0px #02844d;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--main-color);
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+        font-weight: 500;
+        outline: none;
+        position: relative;
+        padding: 5px 10px;
+        width: 125px;
+        text-align: center;
+        margin: 0 87.5px;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: var(--main-color);
+          bottom: 0;
+          left: 0;
+        }
+
+        &:hover {
+          background-color: var(--main-color);
+          color: var(--second-color);
+          box-shadow: 0px 0px 20px 0px #02844d;
+        }
+      }
+    }
+  }
+}
+
+/* footer */
+
+.footer {
+  background-color: var(--main-color);
+  color: var(--second-color);
+  text-align: center;
+  padding: 10px 0;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+
+    .name {
+      font-weight: 700;
     }
   }
 }
