@@ -70,7 +70,7 @@ fetchProjects().then((projects) => {
         const regex = /(-|_)/gi;
         const upperCase = project.name.charAt(0).toUpperCase() + project.name.slice(1);
         const lowerCase = project.name.toLowerCase();
-        image.src = `../image/${lowerCase.replace(regex, " ")}.png`;
+        image.src = `./image/${lowerCase.replace(regex, " ")}.png`;
         image.alt = "Logo";
         image.classList.add("project-img");
         title.textContent = upperCase.replace(regex, " ");
