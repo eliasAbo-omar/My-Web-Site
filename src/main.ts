@@ -94,6 +94,8 @@ fetchProjects().then((projects: myProject[]) => {
       project.name.charAt(0).toUpperCase() + project.name.slice(1);
     const lowerCase: s = project.name.toLowerCase();
 
+    
+
     image.src = `./image/${lowerCase.replace(regex, "-")}.png`;
     image.alt = "Logo";
     image.classList.add("project-img");
