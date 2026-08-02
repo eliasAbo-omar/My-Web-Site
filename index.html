@@ -80,7 +80,7 @@
       </div>
     </section>
     <!-- ========== About Me =========== -->
-    <section class="about-section dark padding" id="about">
+    <section class="about-section dark padding" id="about-me">
       <div class="head-section text-center">
         <h2>About Me</h2>
       </div>
@@ -119,6 +119,88 @@
       </div>
     </section>
     <!-- ========== Contact Me =========== -->
+    <section class="contact-me light padding" id="contact-me">
+      <div class="head-section text-center">
+        <h2>Contact Me</h2>
+      </div>
+      <div class="container">
+        <div class="contact-container">
+          <form action="" class="contact-form">
+            <input
+              type="text"
+              class="name"
+              id="userName"
+              placeholder="Your Name"
+              required
+            />
+            <input
+              type="email"
+              class="email"
+              id="userEmail"
+              placeholder="Your Email"
+              required
+            />
+            <input
+              type="text"
+              class="subject"
+              id="userSubject"
+              placeholder="Subject"
+              required
+            />
+            <textarea
+              name=""
+              id="userMessage"
+              class="massege"
+              placeholder="Your Massege"
+              required
+            ></textarea>
+
+            <button class="btn">Send</button>
+          </form>
+
+          <div class="social">
+            <h3>Follow Me</h3>
+            <ul class="social-link">
+              <li>
+                <a
+                  href="https://github.com/eliasAbo-omar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa-brands fa-github"></i>
+                  <p>My Github</p>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/966538181612?text=Hello%20Elias,%20I%20saw%20your%20portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <p>Be In Touch</p></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://linktr.ee/go_rk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="fa-brands fa-linktree"></i>
+                  <p class="linktree">Follow Me & support Me</p></a
+                >
+              </li>
+              <li>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-linkedin"></i>
+                  <p>My Linkedin</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- ========== Footer =========== -->
     <footer class="footer">
       <div class="container">
@@ -132,6 +214,8 @@
     <script src="./js/bootstrap.bundle.min.js"></script>
     <!-- ========== font awesome =========== -->
     <script src="./js/all.min.js"></script>
+    <!-- ========== mail.js =========== -->
+    <script src="./js/emailjs.min.js"></script>
     <!-- ========== main JS =========== -->
     <script type="module" src="./dist/main.js"></script>
   </body>

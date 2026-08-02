@@ -88,6 +88,60 @@ fetchProjects().then((projects) => {
     });
     projectContainer === null || projectContainer === void 0 ? void 0 : projectContainer.appendChild(fragment);
 });
+const inputName = document.getElementById("userName");
+const inputEmail = document.getElementById("userEmail");
+const inputSubject = document.getElementById("userSubject");
+const inputMessage = document.getElementById("userMessage");
+function textProtection(text) {
+    return text
+        .trim()
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;")
+        .replace(/&/g, "&amp;")
+        .replace(/\\/g, "&#92;")
+        .replace(/\//g, "&#47;");
+}
+console.log(inputName, inputEmail, inputSubject, inputMessage, textProtection("hello"));
+const placeHolder = document.querySelectorAll("input");
+const textarea = document.querySelector("textarea");
+const textareaPlaceHolder = textarea.placeholder;
+const textareaLetters = textareaPlaceHolder.split("");
+let time = [];
+let textareTime = [];
+placeHolder.forEach((input) => {
+    const text = input.placeholder;
+    const allLetter = text.split("");
+    input.addEventListener("focus", () => {
+        input.placeholder = "";
+        allLetter.forEach((letters, i) => {
+            const t = setTimeout(() => {
+                input.placeholder += letters;
+            }, 100 * i);
+            time.push(t);
+        });
+    });
+    input.addEventListener("blur", () => {
+        input.placeholder = text;
+        time.forEach((t) => clearTimeout(t));
+        time = [];
+    });
+});
+textarea.addEventListener("focus", () => {
+    textarea.placeholder = "";
+    textareaLetters.forEach((letter, i) => {
+        const t = setTimeout(() => {
+            textarea.placeholder += letter;
+        }, 100 * i);
+        textareTime.push(t);
+    });
+});
+textarea.addEventListener("blur", () => {
+    textarea.placeholder = textareaPlaceHolder;
+    textareTime.forEach((t) => clearTimeout(t));
+    textareTime = [];
+});
 const footerYear = document.querySelector(".footer p span");
 const currentYear = new Date().getFullYear();
 footerYear.textContent = currentYear.toString();

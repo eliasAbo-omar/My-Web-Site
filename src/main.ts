@@ -119,6 +119,86 @@ fetchProjects().then((projects: myProject[]) => {
   projectContainer?.appendChild(fragment);
 });
 
+// ========== conatact Section ===========
+const inputName = document.getElementById("userName") as HTMLInputElement;
+const inputEmail = document.getElementById("userEmail") as HTMLInputElement;
+const inputSubject = document.getElementById("userSubject") as HTMLInputElement;
+const inputMessage = document.getElementById("userMessage") as HTMLInputElement;
+declare const emailjs: any;
+
+function textProtection(text: s): s {
+  return text
+    .trim()
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;")
+    .replace(/&/g, "&amp;")
+    .replace(/\\/g, "&#92;")
+    .replace(/\//g, "&#47;");
+}
+
+console.log(
+  inputName,
+  inputEmail,
+  inputSubject,
+  inputMessage,
+  textProtection("hello"),
+);
+
+// ========== Place Holder in contact Section ===========
+const placeHolder = document.querySelectorAll(
+  "input",
+) as NodeListOf<HTMLInputElement>;
+
+const textarea = document.querySelector("textarea") as HTMLTextAreaElement;
+const textareaPlaceHolder = textarea.placeholder;
+const textareaLetters = textareaPlaceHolder.split("");
+
+let time: n[] = [];
+let textareTime: n[] = [];
+
+placeHolder.forEach((input: HTMLInputElement) => {
+  const text: s = input.placeholder;
+
+  const allLetter: s[] = text.split("");
+
+  input.addEventListener("focus", () => {
+    input.placeholder = "";
+
+    allLetter.forEach((letters: s, i: n) => {
+      const t = setTimeout(() => {
+        input.placeholder += letters;
+      }, 100 * i);
+
+      time.push(t);
+    });
+  });
+
+  input.addEventListener("blur", () => {
+    input.placeholder = text;
+    time.forEach((t: n) => clearTimeout(t));
+    time = [];
+  });
+});
+
+textarea.addEventListener("focus", () => {
+  textarea.placeholder = "";
+  textareaLetters.forEach((letter: s, i: n) => {
+    const t = setTimeout(() => {
+      textarea.placeholder += letter;
+    }, 100 * i);
+
+    textareTime.push(t);
+  });
+});
+
+textarea.addEventListener("blur", () => {
+  textarea.placeholder = textareaPlaceHolder;
+  textareTime.forEach((t: n) => clearTimeout(t));
+  textareTime = [];
+});
+
 // ========== Footer Section ===========
 
 const footerYear = document.querySelector(".footer p span") as HTMLSpanElement;
