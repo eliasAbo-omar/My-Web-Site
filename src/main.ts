@@ -94,7 +94,7 @@ fetchProjects().then((projects: myProject[]) => {
       project.name.charAt(0).toUpperCase() + project.name.slice(1);
     const lowerCase: s = project.name.toLowerCase();
 
-    image.src = `./image/${lowerCase.replace(regex, "-")}.png`;
+    image.src = `./image/${lowerCase}.png`;
     image.alt = "Logo";
     image.classList.add("project-img");
 
@@ -124,7 +124,7 @@ const inputName = document.getElementById("userName") as HTMLInputElement;
 const inputEmail = document.getElementById("userEmail") as HTMLInputElement;
 const inputSubject = document.getElementById("userSubject") as HTMLInputElement;
 const inputMessage = document.getElementById("userMessage") as HTMLInputElement;
-declare const emailjs: any;
+const contactForm = document.querySelector(".contact-form") as HTMLFormElement;
 
 function textProtection(text: s): s {
   return text
@@ -138,13 +138,29 @@ function textProtection(text: s): s {
     .replace(/\//g, "&#47;");
 }
 
-console.log(
-  inputName,
-  inputEmail,
-  inputSubject,
-  inputMessage,
-  textProtection("hello"),
-);
+contactForm.addEventListener("submit", (e: Event) => {
+  e.preventDefault();
+
+  const nameValue: s = inputName.value.trim();
+  const emailValue: s = inputEmail.value.trim();
+  const subjectValue: s = inputSubject.value.trim();
+  const messageValue: s = inputMessage.value.trim();
+
+  if (!nameValue || !emailValue || !subjectValue || !messageValue) return;
+
+  const clearValueName: s = textProtection(nameValue);
+  const clearValueEmail: s = textProtection(emailValue);
+  const clearValueSubject: s = textProtection(subjectValue);
+  const clearValueMessage: s = textProtection(messageValue);
+
+  const myEmail: s = "ekasa123@gmail.com";
+
+  const emailBody: s = `Hello, I am ${clearValueName}.\n\n${clearValueMessage}\n\nMy contact email: ${clearValueEmail}`;
+
+  const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${encodeURIComponent(clearValueSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+  window.open(mailtoUrl, "_blank");
+});
 
 // ========== Place Holder in contact Section ===========
 const placeHolder = document.querySelectorAll(

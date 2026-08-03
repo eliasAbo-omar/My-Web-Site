@@ -70,7 +70,7 @@ fetchProjects().then((projects) => {
         const regex = /(-|_|\s)/gi;
         const upperCase = project.name.charAt(0).toUpperCase() + project.name.slice(1);
         const lowerCase = project.name.toLowerCase();
-        image.src = `./image/${lowerCase.replace(regex, "-")}.png`;
+        image.src = `./image/${lowerCase}.png`;
         image.alt = "Logo";
         image.classList.add("project-img");
         title.textContent = upperCase.replace(regex, " ");
@@ -92,6 +92,7 @@ const inputName = document.getElementById("userName");
 const inputEmail = document.getElementById("userEmail");
 const inputSubject = document.getElementById("userSubject");
 const inputMessage = document.getElementById("userMessage");
+const contactForm = document.querySelector(".contact-form");
 function textProtection(text) {
     return text
         .trim()
@@ -103,7 +104,23 @@ function textProtection(text) {
         .replace(/\\/g, "&#92;")
         .replace(/\//g, "&#47;");
 }
-console.log(inputName, inputEmail, inputSubject, inputMessage, textProtection("hello"));
+contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nameValue = inputName.value.trim();
+    const emailValue = inputEmail.value.trim();
+    const subjectValue = inputSubject.value.trim();
+    const messageValue = inputMessage.value.trim();
+    if (!nameValue || !emailValue || !subjectValue || !messageValue)
+        return;
+    const clearValueName = textProtection(nameValue);
+    const clearValueEmail = textProtection(emailValue);
+    const clearValueSubject = textProtection(subjectValue);
+    const clearValueMessage = textProtection(messageValue);
+    const myEmail = "ekasa123@gmail.com";
+    const emailBody = `Hello, I am ${clearValueName}.\n\n${clearValueMessage}\n\nMy contact email: ${clearValueEmail}`;
+    const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${encodeURIComponent(clearValueSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.open(mailtoUrl, "_blank");
+});
 const placeHolder = document.querySelectorAll("input");
 const textarea = document.querySelector("textarea");
 const textareaPlaceHolder = textarea.placeholder;
