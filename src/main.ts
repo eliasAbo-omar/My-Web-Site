@@ -222,3 +222,30 @@ const footerYear = document.querySelector(".footer p span") as HTMLSpanElement;
 const currentYear: n = new Date().getFullYear();
 
 footerYear.textContent = currentYear.toString();
+
+// ========== active class on nav auto ===========
+
+const navLinks = document.querySelectorAll(
+  ".menu li a",
+) as NodeListOf<HTMLAnchorElement>;
+
+window.addEventListener("scroll", () => {
+  const scrollY: n = window.scrollY;
+
+  navLinks.forEach((link: HTMLAnchorElement) => {
+    const hash = link.hash;
+
+    const section = document.querySelector(hash) as HTMLElement;
+
+    if (section) {
+      const sectionTop: n = section.offsetTop - 100;
+      const sectionHeight: n = section.clientHeight;
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    }
+  });
+});

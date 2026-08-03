@@ -162,5 +162,23 @@ textarea.addEventListener("blur", () => {
 const footerYear = document.querySelector(".footer p span");
 const currentYear = new Date().getFullYear();
 footerYear.textContent = currentYear.toString();
+const navLinks = document.querySelectorAll(".menu li a");
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    navLinks.forEach((link) => {
+        const hash = link.hash;
+        const section = document.querySelector(hash);
+        if (section) {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                link.classList.add("active");
+            }
+            else {
+                link.classList.remove("active");
+            }
+        }
+    });
+});
 export {};
 //# sourceMappingURL=main.js.map
