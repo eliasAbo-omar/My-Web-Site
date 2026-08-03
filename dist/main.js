@@ -231,5 +231,17 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+const iconMenu = document.querySelector(".icon");
+const menuActive = document.querySelector(".menu");
+iconMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menuActive.classList.toggle("active");
+});
+document.addEventListener("click", (e) => {
+    if (e.target !== menuActive.closest(".menu") &&
+        e.target !== iconMenu.closest(".icon")) {
+        menuActive.classList.remove("active");
+    }
+});
 export {};
 //# sourceMappingURL=main.js.map

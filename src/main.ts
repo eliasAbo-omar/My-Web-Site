@@ -312,3 +312,21 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+
+// ========== active menu on click icon ==========
+const iconMenu = document.querySelector(".icon") as HTMLElement;
+const menuActive = document.querySelector(".menu") as HTMLElement;
+
+iconMenu.addEventListener("click", (e: PointerEvent) => {
+  e.stopPropagation();
+  menuActive.classList.toggle("active");
+});
+
+document.addEventListener("click", (e) => {
+  if (
+    e.target !== menuActive.closest(".menu") &&
+    e.target !== iconMenu.closest(".icon")
+  ) {
+    menuActive.classList.remove("active");
+  }
+});
