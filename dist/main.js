@@ -60,33 +60,84 @@ function fetchProjects() {
         }
     });
 }
+function closeAllCard() {
+    document.querySelectorAll(".project-card").forEach((card) => {
+        card.classList.remove("long", "special");
+    });
+    document.querySelectorAll(".text-description").forEach((text) => {
+        text.classList.remove("height");
+    });
+}
 fetchProjects().then((projects) => {
     projects.forEach((project) => {
         const card = document.createElement("div");
         const title = document.createElement("h3");
+        const textDescription = document.createElement("div");
+        const linkDiv = document.createElement("div");
+        const ditals = document.createElement("button");
         const description = document.createElement("p");
         const link = document.createElement("a");
         const image = document.createElement("img");
         const regex = /(-|_|\s)/gi;
         const upperCase = project.name.charAt(0).toUpperCase() + project.name.slice(1);
         const lowerCase = project.name.toLowerCase();
+        card.dataset.projectName = project.name;
         image.src = `./image/${lowerCase}.png`;
         image.alt = "Logo";
         image.classList.add("project-img");
         title.textContent = upperCase.replace(regex, " ");
         description.textContent = project.description;
         link.href = `${project.url}`;
+        link.classList.add("link-project");
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = "View Project";
+        ditals.textContent = "Details";
+        ditals.classList.add("details");
         card.classList.add("project-card");
+        textDescription.classList.add("text-description");
+        linkDiv.classList.add("project-link");
+        textDescription.appendChild(description);
+        linkDiv.appendChild(link);
+        linkDiv.appendChild(ditals);
         card.appendChild(title);
         card.appendChild(image);
-        card.appendChild(description);
-        card.appendChild(link);
+        card.appendChild(textDescription);
+        card.appendChild(linkDiv);
         fragment.appendChild(card);
     });
     projectContainer === null || projectContainer === void 0 ? void 0 : projectContainer.appendChild(fragment);
+});
+projectContainer === null || projectContainer === void 0 ? void 0 : projectContainer.addEventListener("click", (e) => {
+    const target = e.target;
+    const detailsBtn = target.closest(".details");
+    const card = target.closest(".project-card");
+    if (detailsBtn && card) {
+        e.stopPropagation();
+        const isOpen = card.classList.contains("long") || card.classList.contains("special");
+        const textDescription = card.querySelector(".text-description");
+        const projectName = card.dataset.projectName;
+        closeAllCard();
+        if (!isOpen) {
+            if (projectName === "My-Web-Site") {
+                card.classList.add("special");
+            }
+            else {
+                card.classList.add("long");
+            }
+            textDescription.classList.add("height");
+        }
+        return;
+    }
+    if (card && !detailsBtn) {
+        closeAllCard();
+    }
+});
+document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!target.closest(".details")) {
+        closeAllCard();
+    }
 });
 const inputName = document.getElementById("userName");
 const inputEmail = document.getElementById("userEmail");

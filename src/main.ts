@@ -82,10 +82,22 @@ async function fetchProjects(): Promise<myProject[]> {
   }
 }
 
+function closeAllCard(): void {
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.classList.remove("long", "special");
+  });
+  document.querySelectorAll(".text-description").forEach((text) => {
+    text.classList.remove("height");
+  });
+}
+
 fetchProjects().then((projects: myProject[]) => {
   projects.forEach((project: myProject) => {
     const card = document.createElement("div") as HTMLDivElement;
     const title = document.createElement("h3") as HTMLHeadingElement;
+    const textDescription = document.createElement("div") as HTMLDivElement;
+    const linkDiv = document.createElement("div") as HTMLDivElement;
+    const ditals = document.createElement("button") as HTMLButtonElement;
     const description = document.createElement("p") as HTMLParagraphElement;
     const link = document.createElement("a") as HTMLAnchorElement;
     const image = document.createElement("img") as HTMLImageElement;
@@ -94,29 +106,80 @@ fetchProjects().then((projects: myProject[]) => {
       project.name.charAt(0).toUpperCase() + project.name.slice(1);
     const lowerCase: s = project.name.toLowerCase();
 
+    card.dataset.projectName = project.name;
+
     image.src = `./image/${lowerCase}.png`;
     image.alt = "Logo";
     image.classList.add("project-img");
 
     title.textContent = upperCase.replace(regex, " ");
-
     description.textContent = project.description;
 
     link.href = `${project.url}`;
+    link.classList.add("link-project");
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.textContent = "View Project";
 
+    ditals.textContent = "Details";
+    ditals.classList.add("details");
+
     card.classList.add("project-card");
+    textDescription.classList.add("text-description");
+    linkDiv.classList.add("project-link");
+
+    textDescription.appendChild(description);
+    linkDiv.appendChild(link);
+    linkDiv.appendChild(ditals);
 
     card.appendChild(title);
     card.appendChild(image);
-    card.appendChild(description);
-    card.appendChild(link);
+    card.appendChild(textDescription);
+    card.appendChild(linkDiv);
 
     fragment.appendChild(card);
   });
   projectContainer?.appendChild(fragment);
+});
+
+projectContainer?.addEventListener("click", (e: Event) => {
+  const target = e.target as HTMLElement;
+  const detailsBtn = target.closest(".details") as HTMLButtonElement;
+  const card = target.closest(".project-card") as HTMLDivElement;
+
+  if (detailsBtn && card) {
+    e.stopPropagation();
+
+    const isOpen =
+      card.classList.contains("long") || card.classList.contains("special");
+    const textDescription = card.querySelector(
+      ".text-description",
+    ) as HTMLDivElement;
+    const projectName = card.dataset.projectName as s;
+
+    closeAllCard();
+
+    if (!isOpen) {
+      if (projectName === "My-Web-Site") {
+        card.classList.add("special");
+      } else {
+        card.classList.add("long");
+      }
+      textDescription.classList.add("height");
+    }
+    return;
+  }
+
+  if (card && !detailsBtn) {
+    closeAllCard();
+  }
+});
+
+document.addEventListener("click", (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  if (!target.closest(".details")) {
+    closeAllCard();
+  }
 });
 
 // ========== conatact Section ===========
