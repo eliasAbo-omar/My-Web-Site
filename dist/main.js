@@ -261,22 +261,18 @@ sr.reveal(`.header`, {
 });
 sr.reveal(`.head-section`, {
     interval: 100,
-    reset: true,
 });
 sr.reveal(`.welcome, .text-about, .contact-form`, {
     origin: "left",
     interval: 100,
-    reset: true,
 });
 sr.reveal(`.home-img img, .skill, .social-link`, {
     origin: "right",
     interval: 100,
-    reset: true,
 });
 sr.reveal(`.my-skill li, .social-link li`, {
     interval: 100,
     delay: 800,
-    reset: true,
     origin: "right",
 });
 export {};
