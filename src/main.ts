@@ -145,7 +145,6 @@ fetchProjects().then((projects: myProject[]) => {
     sr.reveal(`.project-card`, {
       origin: "bottom",
       interval: 100,
-      reset: true,
     });
   });
 });
