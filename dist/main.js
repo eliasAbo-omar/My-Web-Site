@@ -109,9 +109,8 @@ fetchProjects().then((projects) => {
     projectContainer === null || projectContainer === void 0 ? void 0 : projectContainer.appendChild(fragment);
     setTimeout(() => {
         sr.reveal(`.project-card`, {
-            origin: "bottom",
             interval: 100,
-            reset: true,
+            origin: "bottom",
         });
     });
 });
