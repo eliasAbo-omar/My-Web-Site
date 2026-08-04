@@ -107,6 +107,13 @@ fetchProjects().then((projects) => {
         fragment.appendChild(card);
     });
     projectContainer === null || projectContainer === void 0 ? void 0 : projectContainer.appendChild(fragment);
+    setTimeout(() => {
+        sr.reveal(`.project-card`, {
+            origin: "bottom",
+            interval: 100,
+            reset: true,
+        });
+    });
 });
 projectContainer === null || projectContainer === void 0 ? void 0 : projectContainer.addEventListener("click", (e) => {
     const target = e.target;
@@ -242,6 +249,35 @@ document.addEventListener("click", (e) => {
         e.target !== iconMenu.closest(".icon")) {
         menuActive.classList.remove("active");
     }
+});
+const sr = ScrollReveal({
+    origin: "top",
+    distance: "60px",
+    duration: 2500,
+    delay: 100,
+});
+sr.reveal(`.header`, {
+    interval: 100,
+});
+sr.reveal(`.head-section`, {
+    interval: 100,
+    reset: true,
+});
+sr.reveal(`.welcome, .text-about, .contact-form`, {
+    origin: "left",
+    interval: 100,
+    reset: true,
+});
+sr.reveal(`.home-img img, .skill, .social-link`, {
+    origin: "right",
+    interval: 100,
+    reset: true,
+});
+sr.reveal(`.my-skill li, .social-link li`, {
+    interval: 100,
+    delay: 800,
+    reset: true,
+    origin: "right",
 });
 export {};
 //# sourceMappingURL=main.js.map

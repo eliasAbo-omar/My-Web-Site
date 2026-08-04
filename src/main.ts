@@ -140,6 +140,14 @@ fetchProjects().then((projects: myProject[]) => {
     fragment.appendChild(card);
   });
   projectContainer?.appendChild(fragment);
+
+  setTimeout(() => {
+    sr.reveal(`.project-card`, {
+      origin: "bottom",
+      interval: 100,
+      reset: true,
+    });
+  });
 });
 
 projectContainer?.addEventListener("click", (e: Event) => {
@@ -329,4 +337,43 @@ document.addEventListener("click", (e) => {
   ) {
     menuActive.classList.remove("active");
   }
+});
+
+// ========== ScrollReveal animation ==========
+declare const ScrollReveal: any;
+
+const sr = ScrollReveal({
+  origin: "top",
+  distance: "60px",
+  duration: 2500,
+  delay: 100,
+  // reset: true, // animation repeat
+});
+
+sr.reveal(`.header`, {
+  interval: 100,
+});
+
+sr.reveal(`.head-section`, {
+  interval: 100,
+  reset: true,
+});
+
+sr.reveal(`.welcome, .text-about, .contact-form`, {
+  origin: "left",
+  interval: 100,
+  reset: true,
+});
+
+sr.reveal(`.home-img img, .skill, .social-link`, {
+  origin: "right",
+  interval: 100,
+  reset: true,
+});
+
+sr.reveal(`.my-skill li, .social-link li`, {
+  interval: 100,
+  delay: 800,
+  reset: true,
+  origin: "right",
 });

@@ -23,6 +23,12 @@ h6 {
   font-size: 22px;
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 p {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
