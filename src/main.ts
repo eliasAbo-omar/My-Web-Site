@@ -108,7 +108,7 @@ fetchProjects().then((projects: myProject[]) => {
 
     card.dataset.projectName = project.name;
 
-    image.src = `./image/${lowerCase}.png`;
+    image.src = `./image/${lowerCase.replace(regex, " ")}.png`;
     image.alt = "Logo";
     image.classList.add("project-img");
 
