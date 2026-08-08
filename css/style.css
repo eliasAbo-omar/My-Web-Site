@@ -512,7 +512,7 @@ body {
   .projects {
     & .container-projects {
       .project-card.long {
-        height: 440px;
+        height: 400px;
       }
       .project-card.special {
         height: 400px;
