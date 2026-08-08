@@ -350,7 +350,7 @@ body {
     gap: 20px;
 
     .project-card.long {
-      height: 380px;
+      height: 490px;
     }
 
     .project-card.special {
@@ -499,7 +499,7 @@ body {
   .projects {
     & .container-projects {
       .project-card.long {
-        height: 350px;
+        height: 440px;
       }
       .project-card.special {
         height: 440px;
@@ -511,6 +511,9 @@ body {
 @media (max-width: 767px) {
   .projects {
     & .container-projects {
+      .project-card.long {
+        height: 440px;
+      }
       .project-card.special {
         height: 400px;
       }
